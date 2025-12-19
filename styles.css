@@ -1,1 +1,61 @@
+/* Заменяем стандартные цвета GitHub на радужные */
+[data-level="0"] {
+  fill: #FFEBEE !important; /* Очень светлый красный */
+}
 
+[data-level="1"] {
+  fill: #FFCDD2 !important; /* Светлый красный */
+}
+
+[data-level="2"] {
+  fill: #EF9A9A !important; /* Красный */
+}
+
+[data-level="3"] {
+  fill: #E57373 !important; /* Яркий красный */
+}
+
+[data-level="4"] {
+  fill: #EF5350 !important; /* Оранжево-красный */
+}
+
+/* Дополнительные уровни для большей активности */
+.ContributionCalendar-day[data-level="0"] {
+  background-color: #FFEBEE !important;
+}
+
+.ContributionCalendar-day[data-level="1"] {
+  background-color: #FFCDD2 !important;
+}
+
+.ContributionCalendar-day[data-level="2"] {
+  background-color: #EF9A9A !important;
+}
+
+.ContributionCalendar-day[data-level="3"] {
+  background-color: #E57373 !important;
+}
+
+.ContributionCalendar-day[data-level="4"] {
+  background-color: #EF5350 !important;
+}
+
+/* Можно добавить анимацию */
+.ContributionCalendar-day:hover {
+  transform: scale(1.3) !important;
+  transition: transform 0.2s !important;
+  z-index: 100 !important;
+}
+
+/* Легенда тоже меняем */
+.ContributionCalendar-legend .legend li[data-level="0"] {
+  background-color: #FFEBEE !important;
+}
+
+.ContributionCalendar-legend .legend li[data-level="1"] {
+  background-color: #FFCDD2 !important;
+}
+
+.ContributionCalendar-legend .legend li[data-level="2"] {
+  background-color: #EF9A9A !important;
+}
