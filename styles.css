@@ -1,53 +1,73 @@
-/* Заменяем стандартные цвета GitHub на радужные */
+/* === РАДУЖНАЯ ТЕМА ДЛЯ ГРАФИКА КОНТРИБУЦИЙ === */
+
+/* Для графика в профиле */
+.ContributionCalendar-day[data-level="0"],
+rect[data-level="0"],
 [data-level="0"] {
-  fill: #FFEBEE !important; /* Очень светлый красный */
-}
-
-[data-level="1"] {
-  fill: #FFCDD2 !important; /* Светлый красный */
-}
-
-[data-level="2"] {
-  fill: #EF9A9A !important; /* Красный */
-}
-
-[data-level="3"] {
-  fill: #E57373 !important; /* Яркий красный */
-}
-
-[data-level="4"] {
-  fill: #EF5350 !important; /* Оранжево-красный */
-}
-
-/* Дополнительные уровни для большей активности */
-.ContributionCalendar-day[data-level="0"] {
+  fill: #FFEBEE !important;
   background-color: #FFEBEE !important;
 }
 
-.ContributionCalendar-day[data-level="1"] {
+.ContributionCalendar-day[data-level="1"],
+rect[data-level="1"],
+[data-level="1"] {
+  fill: #FFCDD2 !important;
   background-color: #FFCDD2 !important;
 }
 
-.ContributionCalendar-day[data-level="2"] {
+.ContributionCalendar-day[data-level="2"],
+rect[data-level="2"],
+[data-level="2"] {
+  fill: #EF9A9A !important;
   background-color: #EF9A9A !important;
 }
 
-.ContributionCalendar-day[data-level="3"] {
+.ContributionCalendar-day[data-level="3"],
+rect[data-level="3"],
+[data-level="3"] {
+  fill: #E57373 !important;
   background-color: #E57373 !important;
 }
 
-.ContributionCalendar-day[data-level="4"] {
+.ContributionCalendar-day[data-level="4"],
+rect[data-level="4"],
+[data-level="4"] {
+  fill: #EF5350 !important;
   background-color: #EF5350 !important;
 }
 
-/* Можно добавить анимацию */
-.ContributionCalendar-day:hover {
-  transform: scale(1.3) !important;
-  transition: transform 0.2s !important;
-  z-index: 100 !important;
+/* Дополнительные уровни для очень активных пользователей */
+.ContributionCalendar-day[data-level="5"],
+rect[data-level="5"] {
+  fill: #FF8A65 !important;
+  background-color: #FF8A65 !important;
 }
 
-/* Легенда тоже меняем */
+.ContributionCalendar-day[data-level="6"],
+rect[data-level="6"] {
+  fill: #FFB74D !important;
+  background-color: #FFB74D !important;
+}
+
+.ContributionCalendar-day[data-level="7"],
+rect[data-level="7"] {
+  fill: #FFD54F !important;
+  background-color: #FFD54F !important;
+}
+
+.ContributionCalendar-day[data-level="8"],
+rect[data-level="8"] {
+  fill: #AED581 !important;
+  background-color: #AED581 !important;
+}
+
+.ContributionCalendar-day[data-level="9"],
+rect[data-level="9"] {
+  fill: #81C784 !important;
+  background-color: #81C784 !important;
+}
+
+/* Легенда графика тоже радужная */
 .ContributionCalendar-legend .legend li[data-level="0"] {
   background-color: #FFEBEE !important;
 }
@@ -58,4 +78,131 @@
 
 .ContributionCalendar-legend .legend li[data-level="2"] {
   background-color: #EF9A9A !important;
+}
+
+.ContributionCalendar-legend .legend li[data-level="3"] {
+  background-color: #E57373 !important;
+}
+
+.ContributionCalendar-legend .legend li[data-level="4"] {
+  background-color: #EF5350 !important;
+}
+
+/* Анимация при наведении */
+.ContributionCalendar-day:hover,
+rect[data-level]:hover {
+  transform: scale(1.3) !important;
+  transition: transform 0.2s ease !important;
+  z-index: 1000 !important;
+  filter: brightness(1.1) saturate(1.2) !important;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
+}
+
+/* Информация при наведении */
+.ContributionCalendar-day:hover::after {
+  content: attr(data-date) " - " attr(data-count) " контрибуций" !important;
+  position: absolute !important;
+  background: rgba(0,0,0,0.8) !important;
+  color: white !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  z-index: 1001 !important;
+  white-space: nowrap !important;
+}
+
+/* === КНОПКА ПЕРЕКЛЮЧЕНИЯ === */
+#rainbow-toggle-button {
+  margin-left: 15px !important;
+  padding: 6px 12px !important;
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+#rainbow-toggle-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4) !important;
+}
+
+#rainbow-toggle-button.off {
+  background: linear-gradient(45deg, #666, #999) !important;
+}
+
+/* === СТАТИСТИКА В ПРОФИЛЕ === */
+/* Делаем цифры статистики более заметными */
+.js-yearly-contributions h2 {
+  color: #4ECDC4 !important;
+  position: relative !important;
+}
+
+.js-yearly-contributions h2::after {
+  content: " 🌈" !important;
+}
+
+/* Красивые цифры в статистике */
+.text-emphasized {
+  color: #FF6B6B !important;
+  font-weight: bold !important;
+}
+
+/* === БАННЕР РАСШИРЕНИЯ === */
+#rainbow-extension-banner {
+  background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1) !important;
+  color: white !important;
+  padding: 10px 15px !important;
+  margin: 10px 0 !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  display: none !important;
+  animation: rainbow-pulse 3s infinite !important;
+}
+
+@keyframes rainbow-pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+#rainbow-extension-banner.show {
+  display: block !important;
+}
+
+/* === ТЕМНАЯ ТЕМА GITHUB === */
+[data-color-mode="dark"] .ContributionCalendar-day[data-level="0"],
+[data-color-mode="dark"] rect[data-level="0"] {
+  fill: #1a1a2e !important;
+  background-color: #1a1a2e !important;
+}
+
+[data-color-mode="dark"] .ContributionCalendar-day[data-level="1"],
+[data-color-mode="dark"] rect[data-level="1"] {
+  fill: #16213e !important;
+  background-color: #16213e !important;
+}
+
+[data-color-mode="dark"] .ContributionCalendar-day[data-level="2"],
+[data-color-mode="dark"] rect[data-level="2"] {
+  fill: #0f3460 !important;
+  background-color: #0f3460 !important;
+}
+
+[data-color-mode="dark"] .ContributionCalendar-day[data-level="3"],
+[data-color-mode="dark"] rect[data-level="3"] {
+  fill: #533483 !important;
+  background-color: #533483 !important;
+}
+
+[data-color-mode="dark"] .ContributionCalendar-day[data-level="4"],
+[data-color-mode="dark"] rect[data-level="4"] {
+  fill: #e94560 !important;
+  background-color: #e94560 !important;
 }
