@@ -2,16 +2,33 @@
   "manifest_version": 3,
   "name": "GitHub Rainbow Contributions",
   "version": "1.0",
-  "description": "Делает график контрибуций радужным",
-  "permissions": ["activeTab"],
-  "content_scripts": [{
-    "matches": ["*://*.github.com/*"],
-    "css": ["styles.css"],
-    "js": ["content.js"]
-  }],
+  "description": "Делает график контрибуций GitHub радужным 🌈",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["*://*.github.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.github.com/*"],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GitHub Rainbow 🌈",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
-  }
+  },
+  "web_accessible_resources": [{
+    "resources": ["*.png"],
+    "matches": ["*://*.github.com/*"]
+  }]
 }
