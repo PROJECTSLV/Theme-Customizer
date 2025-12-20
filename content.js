@@ -154,35 +154,36 @@ class GitHubRainbowExtension {
   }
 
   applyColorToElement(element, level) {
-    const colors = this.getColorScheme();
-    const color = colors[Math.min(level, colors.length - 1)];
-    
-    element.style.fill = color;
-    element.style.backgroundColor = color;
-    
-    // Добавляем data-атрибут с цветом для отладки
-    element.setAttribute('data-rainbow-color', color);
+  // Если расширение выключено - ВОЗВРАЩАЕМ стандартные цвета GitHub
+  if (!this.isEnabled) {
+    // Очищаем кастомные стили, чтобы сработали стандартные
+    element.style.fill = '';
+    element.style.backgroundColor = '';
+    element.removeAttribute('data-rainbow-color');
+    return;
   }
 
-  getColorScheme() {
-    const schemes = {
-      rainbow: [
-        '#FFEBEE', '#FFCDD2', '#EF9A9A', '#E57373', '#EF5350',
-        '#FF8A65', '#FFB74D', '#FFD54F', '#AED581', '#81C784'
-      ],
-      neon: [
-        '#FF00FF', '#00FFFF', '#FFFF00', '#FF0080', '#80FF00',
-        '#00FF80', '#FF8000', '#0080FF', '#8000FF', '#FF0080'
-      ],
-      pastel: [
-        '#FFDEE2', '#FFCCD5', '#FFB6C1', '#FFA7B6', '#FF8FA3',
-        '#FFB3BA', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA'
-      ]
-    };
-    
-    return schemes[this.theme] || schemes.rainbow;
-  }
+  // Получаем цвета ВЫБРАННОЙ схемы
+  const colors = this.getColorScheme();
+  const color = colors[Math.min(level, colors.length - 1)];
 
+  // Применяем цвета только если тема включена
+  element.style.fill = color;
+  element.style.backgroundColor = color;
+  element.setAttribute('data-rainbow-color', color);
+}
+ getColorScheme() {
+  const schemes = {
+    rainbow: ['#FFEBEE', '#FFCDD2', '#EF9A9A', '#E57373', '#EF5350', '#FF8A65', '#FFB74D', '#FFD54F', '#AED581', '#81C784'],
+    neon: ['#FF00FF', '#00FFFF', '#FFFF00', '#FF0080', '#80FF00', '#00FF80', '#FF8000', '#0080FF', '#8000FF', '#FF0080'],
+    pastel: ['#FFDEE2', '#FFCCD5', '#FFB6C1', '#FFA7B6', '#FF8FA3', '#FFB3BA', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA'],
+    // Ключевое добавление: тема "default" для возврата к оригиналу
+    default: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'] // Стандартные цвета GitHub
+  };
+  
+  // Если тема 'default' и расширение выключено, этот массив будет использован для сброса
+  return schemes[this.theme] || schemes.rainbow;
+}
   addInfoBanner() {
     const banner = document.createElement('div');
     banner.id = 'rainbow-extension-banner';
